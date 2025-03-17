@@ -24,7 +24,7 @@ const checkWin = () =>{
         if(boxtext[e[0]].innerText === boxtext[e[1]].innerText && boxtext[e[1]].innerText === boxtext[e[2]].innerText && boxtext[e[0]].innerText !== ""){
             document.getElementsByClassName("info")[0].innerText = boxtext[e[0]].innerText + " Won!";
             isgameover = true;
-            document.querySelector('.won').getElementsByTagName('img')[0].style.width = "450px";
+            document.querySelector('.won').getElementsByTagName('img')[0].style.width = "350px";
             document.querySelector(".line").style.width = "36vw";
             document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
         }

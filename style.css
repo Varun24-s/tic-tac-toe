@@ -78,13 +78,15 @@ nav ul{
 .line {
     width: 0;
     height: 8px;
-    background-color: bisque;
+    background-color: rgb(12, 197, 248);
     position: absolute;
-    transition: width 1s ease-in-out
+    transition: width 1s ease-in-out;
+    z-index: -1;
 }
 @media  screen and (max-width: 1100px) {
     .container{
         flex-wrap: wrap;
+
     }
     .box{
         font-size: 45px;
