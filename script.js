@@ -6,27 +6,39 @@ const changeturn=() =>{
 
 }
 const getPlayerColor = (player) => {
-    return player === "X" ? "#21218b" : "#add656"; // "X" is orange, "O" is blue
+    return player === "X" ? "#4deeea" : "#ffe700"; // "X" is orange, "O" is blue
 };
+let wins = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+]
 const checkWin = () =>{
     let boxtext = document.getElementsByClassName("boxtext");
-    let wins = [
-        [0,1,2,-25,6,0],
-        [3,4,5,-25,18,0],
-        [6,7,8,-25,30,0],
-        [0,3,6,-37.2,18,90],
-        [1,4,7,-25.2,18,90],
-        [2,5,8,-13.2,18,90],
-        [0,4,8,-23,20,45],
-        [2,4,6,-23,15.5,-45]
-    ]
+    // let wins = [
+    //     [0,1,2],
+    //     [3,4,5],
+    //     [6,7,8],
+    //     [0,3,6],
+    //     [1,4,7],
+    //     [2,5,8],
+    //     [0,4,8],
+    //     [2,4,6]
+    // ]
     wins.forEach(e =>{
         if(boxtext[e[0]].innerText === boxtext[e[1]].innerText && boxtext[e[1]].innerText === boxtext[e[2]].innerText && boxtext[e[0]].innerText !== ""){
             document.getElementsByClassName("info")[0].innerText = boxtext[e[0]].innerText + " Won!";
             isgameover = true;
-            document.querySelector('.won').getElementsByTagName('img')[0].style.width = "350px";
-            document.querySelector(".line").style.width = "36vw";
-            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
+            e.forEach(index => {
+                boxes[index].style.backgroundColor = "#c599f7";
+            });
+            // document.querySelector(".line").style.width = "36vw";
+            // document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
         }
 
     })
@@ -43,6 +55,7 @@ Array.from(boxes).forEach(element => {
             checkWin();
             if(!isgameover){
                 document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
+                document.getElementsByClassName("info")[0].style.color = getPlayerColor(turn);
             }
         }
     })
@@ -57,7 +70,12 @@ document.querySelector('.reset').addEventListener('click',() =>{
 
     isgameover = false;
     document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
-    document.querySelector(".line").style.width = "0vw";
-    document.querySelector('.won').getElementsByTagName('img')[0].style.width = "0px"
+    document.getElementsByClassName("info")[0].style.color = getPlayerColor(turn);
+    wins.forEach(e =>{
+        e.forEach(index => {
+            boxes[index].style.backgroundColor = "#b478ff";
+        });
+    })
+    
 })
 
